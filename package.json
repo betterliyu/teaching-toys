@@ -1,0 +1,63 @@
+{
+  "name": "teaching-toys",
+  "version": "1.0.0",
+  "description": "Mrs Wei's teaching toys app",
+  "main": "main.js",
+  "scripts": {
+    "dev": "webpack --config ./config/webpack.dev.js",
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "Eden Li",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.12.18",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.17",
+    "@babel/plugin-transform-runtime": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
+    "@babel/preset-react": "^7.12.13",
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "babel-loader": "^8.2.2",
+    "electron": "^11.3.0",
+    "webpack": "^5.23.0",
+    "webpack-cli": "^4.5.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "teaching_toys"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

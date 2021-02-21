@@ -1,0 +1,8 @@
+// presets项，不想自己动手组合插件？没问题！preset 可以作为 Babel 插件的组合，甚至可以作为可以共享的 options 配置。
+// plugins项，引用插件来处理代码的转换
+// transform-runtime用来处理全局函数和优化babel编译
+
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-transform-runtime"]
+}
