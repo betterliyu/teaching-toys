@@ -1,6 +1,8 @@
 const { app, BrowserWindow } = require('electron')
 
-function createWindow () {
+const development = process.env.NODE_ENV !== 'production'
+
+function createWindow() {
   const win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -8,8 +10,11 @@ function createWindow () {
       nodeIntegration: true
     }
   })
-
-  win.loadFile('index.html')
+  if (development) {
+    win.loadURL('http://localhost:9000')
+  } else {
+    win.loadFile('./dist/index.html')
+  }
 }
 
 app.whenReady().then(createWindow)
