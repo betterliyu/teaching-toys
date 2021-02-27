@@ -1,6 +1,7 @@
+const path = require('path')
 const { app, BrowserWindow } = require('electron')
 
-const development = process.env.NODE_ENV !== 'production'
+const development = process.env.NODE_ENV === 'development'
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -13,7 +14,7 @@ function createWindow() {
   if (development) {
     win.loadURL('http://localhost:9000')
   } else {
-    win.loadFile('./dist/index.html')
+    win.loadFile(path.join(__dirname, 'dist/index.html'))
   }
 }
 

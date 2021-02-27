@@ -11,8 +11,8 @@ module.exports = {
     app: path.join(__dirname, '../src/main.js'),
   },
   output: {
-    path: path.join(__dirname, "../dist/scripts"),
-    filename: "[name].[contenthash].js",
+    path: path.join(__dirname, "../dist"),
+    filename: "[name].js",
   },
   resolve: {
     extensions: [".js", ".jsx"],
@@ -39,7 +39,7 @@ module.exports = {
       template: 'index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
+      filename: '[name].css',
     }),
     new ESLintWebpackPlugin()
   ],

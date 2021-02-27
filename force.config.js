@@ -1,5 +1,10 @@
 module.exports = {
-  "packagerConfig": {},
+  "packagerConfig": {
+    "ignore": [
+      "config",
+      "node_modules"
+    ]
+  },
   "makers": [
     {
       "name": "@electron-forge/maker-squirrel",
@@ -21,18 +26,6 @@ module.exports = {
       "name": "@electron-forge/maker-rpm",
       "config": {}
     }
-  ],
-  plugins: [
-    ['@electron-forge/plugin-webpack', {
-      mainConfig: './config/webpack.main.prod.js',
-      renderer: {
-        config: './config/webpack.renderer.prod.js',
-        entryPoints: [{
-          html: './dist/index.html',
-          js: './main.js',
-          name: 'main_window'
-        }]
-      }
-    }]
   ]
+}
 }
