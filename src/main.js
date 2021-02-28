@@ -1,13 +1,26 @@
 import './styles.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.component';
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import store from './stores/index';
+import App from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('app'));
-
-// if (module.hot) {
-//   module.hot.accept('./print.js', function () {
-//     console.log('Accepting the updated printMe module!');
-//     printMe();
-//   })
-// }
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <AppContainer>
+        <App />
+      </AppContainer>
+    </Provider>,
+    document.getElementById('app')
+  );
+};
+render();
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    // eslint-disable-next-line no-console
+    console.log('Accepting the updated printMe module!');
+    render();
+  });
+}

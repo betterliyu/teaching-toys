@@ -1,52 +1,25 @@
-const path = require("path");
-const webpack = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const ESLintWebpackPlugin = require("eslint-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const commonConfig = require('./webpack.common');
 
-module.exports = {
+module.exports = merge(commonConfig, {
   mode: 'development',
-  entry: {
-    app: path.join(__dirname, '../src/main.js'),
-  },
-  output: {
-    path: path.join(__dirname, "../dist"),
-    filename: "[name].js",
-  },
-  resolve: {
-    extensions: [".js", ".jsx"],
-  },
-  module: {
-    rules: [
-      { test: /\.(js|jsx)$/, use: ["babel-loader"], exclude: /node_modules/ },
-      {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ]
-      },
-    ],
-  },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Mrs Wei\'s teaching toys. 😊 (development)',
-      template: 'index.html'
+      title: "Mrs Wei's teaching toys. 😊 (development)",
+      template: 'index.html',
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-    new ESLintWebpackPlugin()
+    new ESLintWebpackPlugin(),
   ],
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     port: 9000,
     hot: true,
-  }
-};
+  },
+});
