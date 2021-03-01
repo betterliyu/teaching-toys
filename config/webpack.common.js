@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: '[name].js',
+    filename: 'scripts/[name].js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -18,18 +18,26 @@ module.exports = {
       { test: /\.(js|jsx)$/, use: ['babel-loader'], exclude: /node_modules/ },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: '../'
+          }
+        }, 'css-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]',
+        }
       },
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: 'css/[name].css',
     }),
   ],
 };
