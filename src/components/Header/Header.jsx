@@ -4,6 +4,7 @@ import style from './Header.module.css';
 import { DisplayMode } from '../../constants/HeaderConstants';
 
 export default function Header({
+  isMaximized,
   changeDisplayMode,
 }) {
   return (
@@ -27,8 +28,9 @@ export default function Header({
           onClick={() => changeDisplayMode(DisplayMode.Max)}
           onKeyPress={(e) => { if (e.key === 'Enter') changeDisplayMode(DisplayMode.Max); }}
         >
-          <span className="codicon codicon-chrome-restore" />
-          <span className="codicon codicon-chrome-maximize" />
+          {isMaximized
+            ? <span className="codicon codicon-chrome-restore" />
+            : <span className="codicon codicon-chrome-maximize" />}
         </div>
         <div
           className={style.windowBtn}
@@ -45,5 +47,6 @@ export default function Header({
 }
 
 Header.propTypes = {
+  isMaximized: PropTypes.bool.isRequired,
   changeDisplayMode: PropTypes.func.isRequired,
 };

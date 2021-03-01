@@ -13,7 +13,9 @@ function createWindow() {
     frame: false,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: true,
+      enableRemoteModule: true,
+      // 不能设为 false, 否则渲染进程中不能 require electron.
+      // contextIsolation: true,
     },
   });
   if (development) {
@@ -21,6 +23,8 @@ function createWindow() {
   } else {
     win.loadFile(path.join(__dirname, 'dist/index.html'));
   }
+
+  win.webContents.send('window-mode-changed', win.isMaximized() ? 'Max' : 'Normal');
 }
 
 app.whenReady().then(createWindow);
@@ -37,18 +41,18 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on('min', () => {
-  win.minimize();
-});
-
-ipcMain.on('max', () => {
-  if (win.isMaximized()) {
-    win.unmaximize();
-  } else {
-    win.maximize();
+ipcMain.on('change-window-mode', (e, mode) => {
+  if (mode === 'Min') {
+    win.minimize();
+  } else if (mode === 'Max') {
+    if (win.isMaximized()) {
+      win.unmaximize();
+      e.reply('window-mode-changed', 'Normal');
+    } else {
+      win.maximize();
+      e.reply('window-mode-changed', 'Max');
+    }
+  } else if (mode === 'Close') {
+    win.close();
   }
-});
-
-ipcMain.on('close', () => {
-  win.close();
 });
