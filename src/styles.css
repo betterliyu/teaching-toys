@@ -1,2 +1,11 @@
 @import "antd/dist/antd.css";
 @import "./assets/codicon/codicon.css";
+
+button:focus,
+[role="button"]:focus {
+  outline-color: #a6b39b;
+  outline-width: 1px;
+  outline-style: solid;
+  outline-offset: -1px;
+  opacity: 1 !important;
+}

@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  target: 'electron-renderer',
   entry: {
     app: path.join(__dirname, '../src/main.js'),
   },
@@ -21,8 +22,8 @@ module.exports = {
         use: [{
           loader: MiniCssExtractPlugin.loader,
           options: {
-            publicPath: '../'
-          }
+            publicPath: '../',
+          },
         }, 'css-loader'],
       },
       {
@@ -30,7 +31,7 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'assets/[name][ext]',
-        }
+        },
       },
     ],
   },
@@ -40,4 +41,5 @@ module.exports = {
       filename: 'css/[name].css',
     }),
   ],
+  externals: ['electron'],
 };

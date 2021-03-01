@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from './Header/Header';
-import NavContainer from '../containers/NavContainer';
-// import Content from "./Content/Content";
+import {
+  NavContainer,
+  HeaderContainer,
+} from '../containers/index';
 
 function App() {
   return (
     <>
-      <Header />
+      <HeaderContainer />
       <NavContainer />
-      {/* <Content /> */}
     </>
   );
 }
