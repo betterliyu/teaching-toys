@@ -1,9 +1,15 @@
 {
-  "extends": ["airbnb", "airbnb/hooks", "plugin:react/recommended"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
   "env": {
     "browser": true,
     "node": true
   },
+  "plugins": ["react-hooks"],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "linebreak-style": [0, "error", "windows"],
