@@ -33,6 +33,10 @@ module.exports = {
           filename: 'assets/[name][ext]',
         },
       },
+      {
+        test: /\.svg$/i,
+        type: 'asset/inline',
+      },
     ],
   },
   plugins: [

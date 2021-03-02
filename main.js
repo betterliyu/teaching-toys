@@ -1,30 +1,47 @@
 const path = require('path');
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { app, BrowserWindow, ipcMain } = require('electron');
+const {
+  app, BrowserWindow, ipcMain, session,
+} = require('electron');
 
 const development = process.env.NODE_ENV === 'development';
 
 let win = null;
 
+const onWindowIsMaximizedChange = () => win.webContents.send('window-is-maximized', win.isMaximized());
+
 function createWindow() {
   win = new BrowserWindow({
+    show: false,
     width: 800,
     height: 600,
     frame: false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
-      // 不能设为 false, 否则渲染进程中不能 require electron.
-      // contextIsolation: true,
+      // 不能设为 true, 否则渲染进程中不能 require electron.
+      contextIsolation: false,
     },
   });
   if (development) {
+    const reactDevTool = path.join(
+      process.env.LOCALAPPDATA,
+      'Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.10.1_0'
+    );
+    const reduxDevTool = path.join(
+      process.env.LOCALAPPDATA,
+      'Google/Chrome/User Data/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.17.0_0'
+    );
+    session.defaultSession.loadExtension(reactDevTool, { allowFileAccess: true });
+    session.defaultSession.loadExtension(reduxDevTool, { allowFileAccess: true });
     win.loadURL('http://localhost:9000');
   } else {
     win.loadFile(path.join(__dirname, 'dist/index.html'));
   }
-
-  win.webContents.send('window-mode-changed', win.isMaximized() ? 'Max' : 'Normal');
+  win.webContents.once('did-finish-load', onWindowIsMaximizedChange);
+  win.once('ready-to-show', () => win.show());
+  win.on('maximize', onWindowIsMaximizedChange);
+  win.on('unmaximize', onWindowIsMaximizedChange);
 }
 
 app.whenReady().then(createWindow);
@@ -47,10 +64,8 @@ ipcMain.on('change-window-mode', (e, mode) => {
   } else if (mode === 'Max') {
     if (win.isMaximized()) {
       win.unmaximize();
-      e.reply('window-mode-changed', 'Normal');
     } else {
       win.maximize();
-      e.reply('window-mode-changed', 'Max');
     }
   } else if (mode === 'Close') {
     win.close();

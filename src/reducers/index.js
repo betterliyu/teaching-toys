@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux-immutable';
 import NavReducers from './NavReducers';
+import SystemReducers from './SystemReducers';
 
 const reduce = combineReducers({
-  NavReducers,
+  System: SystemReducers,
+  Nav: NavReducers,
 });
 
 export default reduce;

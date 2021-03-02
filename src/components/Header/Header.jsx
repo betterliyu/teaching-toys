@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Header.module.css';
-import { DisplayMode } from '../../constants/HeaderConstants';
+import { DisplayMode } from '../../constants/SystemConstants';
 
 export default function Header({
   isMaximized,
-  changeDisplayMode,
+  changeWindowSize,
 }) {
   return (
     <header className={style.header}>
@@ -16,8 +16,8 @@ export default function Header({
           className={style.windowBtn}
           role="button"
           tabIndex="0"
-          onClick={() => changeDisplayMode(DisplayMode.Min)}
-          onKeyPress={(e) => { if (e.key === 'Enter') changeDisplayMode(DisplayMode.Min); }}
+          onClick={() => changeWindowSize(DisplayMode.Min)}
+          onKeyPress={(e) => { if (e.key === 'Enter') changeWindowSize(DisplayMode.Min); }}
         >
           <span className="codicon codicon-chrome-minimize" />
         </div>
@@ -25,8 +25,8 @@ export default function Header({
           className={style.windowBtn}
           role="button"
           tabIndex="0"
-          onClick={() => changeDisplayMode(DisplayMode.Max)}
-          onKeyPress={(e) => { if (e.key === 'Enter') changeDisplayMode(DisplayMode.Max); }}
+          onClick={() => changeWindowSize(DisplayMode.Max)}
+          onKeyPress={(e) => { if (e.key === 'Enter') changeWindowSize(DisplayMode.Max); }}
         >
           {isMaximized
             ? <span className="codicon codicon-chrome-restore" />
@@ -36,8 +36,8 @@ export default function Header({
           className={style.windowBtn}
           role="button"
           tabIndex="0"
-          onClick={() => changeDisplayMode(DisplayMode.Close)}
-          onKeyPress={(e) => { if (e.key === 'Enter') changeDisplayMode(DisplayMode.Close); }}
+          onClick={() => changeWindowSize(DisplayMode.Close)}
+          onKeyPress={(e) => { if (e.key === 'Enter') changeWindowSize(DisplayMode.Close); }}
         >
           <span className="codicon codicon-close" />
         </div>
@@ -48,5 +48,5 @@ export default function Header({
 
 Header.propTypes = {
   isMaximized: PropTypes.bool.isRequired,
-  changeDisplayMode: PropTypes.func.isRequired,
+  changeWindowSize: PropTypes.func.isRequired,
 };

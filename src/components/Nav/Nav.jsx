@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 export default function Nav({ active, onNavChanged }) {
   return (
     <nav>
-      I am Nav
-      {active.toString()}
-      <button type="button" onClick={() => onNavChanged({ key: 1 })}>Change</button>
+      sdas
     </nav>
   );
 }
