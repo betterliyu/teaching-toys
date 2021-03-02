@@ -13,8 +13,8 @@ const onWindowIsMaximizedChange = () => win.webContents.send('window-is-maximize
 function createWindow() {
   win = new BrowserWindow({
     show: false,
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     frame: false,
     webPreferences: {
       nodeIntegration: true,
