@@ -1,0 +1,6 @@
+.navWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 350px;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Header.module.css';
 import { DisplayMode } from '../../constants/SystemConstants';
+import Text from '../../constants/Text';
 
 export default function Header({
   isMaximized,
@@ -10,7 +11,7 @@ export default function Header({
   return (
     <header className={style.header}>
       <span className={style.icon} />
-      <span className={style.title}>Teaching Toys</span>
+      <span className={style.title}>{Text.App_Title}</span>
       <div className={style.windowBtns}>
         <div
           className={style.windowBtn}
@@ -33,7 +34,7 @@ export default function Header({
             : <span className="codicon codicon-chrome-maximize" />}
         </div>
         <div
-          className={style.windowBtn}
+          className={`${style.windowBtn} ${style.close}`}
           role="button"
           tabIndex="0"
           onClick={() => changeWindowSize(DisplayMode.Close)}

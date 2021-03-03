@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { switchPage } from '../actions/NavActions';
 import Nav from '../components/Nav/Nav';
 
 // eslint-disable-next-line no-unused-vars
 const mapStateToProps = (state, ownProps) => ({
-  active: state.getIn(['Nav', 'selectedKey']) === 1,
+  category: 'learning',
+  game: 'Grade3_U6',
 });
 
 const mapDispatchToProps = {
-  onNavChanged: switchPage,
 };
 
 const NavContainer = connect(
