@@ -19,7 +19,6 @@
     "antd": "^4.12.3",
     "axios": "^0.21.1",
     "electron-squirrel-startup": "^1.0.0",
-    "history": "^5.0.0",
     "immutable": "^4.0.0-rc.12",
     "keymirror": "^0.1.1",
     "prop-types": "^15.7.2",

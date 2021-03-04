@@ -8,7 +8,7 @@
   background-color: rgb(196, 183, 215);
   font-size: 15px;
   font-weight: 600;
-  letter-spacing: .1em;
+  letter-spacing: .05em;
   -webkit-user-select: none;
   -webkit-app-region: drag;
 }

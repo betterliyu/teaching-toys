@@ -1,6 +1,66 @@
 .navWrapper {
+  width: 200px;
+  flex: 0 0 auto;
+}
+.nav {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: stretch;
-  width: 350px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: rgb(245, 245, 245);
+}
+
+.link {
+  position: relative;
+  display: flex;
+  height: 48px;
+  align-items: stretch;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.icon {
+  flex: 0 0 48px;
+  padding: 12px;
+  background-clip: content-box;
+  background-origin: content-box;
+  background-size: contain;
+}
+.iconU6 {
+  background-image: url("../../assets/icon/u6.svg");
+}
+.iconU7 {
+  background-image: url("../../assets/icon/u7.svg");
+}
+.iconWolves {
+  background-image: url("../../assets/icon/wolves.svg");
+}
+
+.title {
+  flex: 1 1 auto;
+  line-height: 48px;
+}
+
+.link:hover,
+.link:focus,
+.link[class*="active"] {
+  color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition-property: background-color;
+  transition-duration: 0.4s;
+}
+
+.link:hover::before,
+.link:focus::before,
+.link[class*="active"]::before {
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: rgb(112, 86, 151);
 }
