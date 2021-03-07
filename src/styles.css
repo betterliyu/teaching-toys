@@ -9,3 +9,9 @@ button:focus,
   outline-offset: -1px;
   opacity: 1 !important;
 }
+
+iframe.plugin {
+  border: none;
+  width: 100%;
+  height: 100%;
+}

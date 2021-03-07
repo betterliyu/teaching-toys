@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrapper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .circle-out {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        top: 50%;
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        border: 1px solid #DDD;
+        border-radius: 50%;
+        transform: translateY(-50%);
+      }
+
+      .circle-in {
+        z-index: 2;
+        margin: 0 auto;
+        width: 500px;
+        height: 500px;
+        cursor: pointer;
+        border: 1px solid #DDD;
+        border-radius: 50%;
+        background-color: white;
+        font-size: 0;
+        transform: rotate(-45deg);
+      }
+
+      .point {
+        position: absolute;
+        z-index: 3;
+        width: 40px;
+        height: 40px;
+        margin: 0 280px;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: #b3d4fc;
+      }
+
+      .arrow {
+        position: absolute;
+        z-index: 3;
+        /* margin: -120px 295px; */
+        left: 295px;
+        top: 60px;
+        width: 10px;
+        height: 240px;
+        transform-origin: 50% 100%;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #b3d4fc;
+
+      }
+
+      .img-section {
+        position: relative;
+        display: inline-block;
+        width: 249px;
+        height: 250px;
+
+      }
+
+      .img-section div {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px;
+        background-repeat: no-repeat;
+      }
+
+      .img-section:nth-child(1) {
+        border-right: 1px dashed #555;
+        border-bottom: 1px dashed #555;
+      }
+
+      .img-section:nth-child(4) {
+        border-left: 1px dashed #555;
+        border-top: 1px dashed #555;
+      }
+
+      .img-section .img-1 {
+        right: 25px;
+        bottom: 25px;
+        background-image: url("jack.jpg");
+        transform: rotate(-45deg);
+      }
+
+      .img-section .img-2 {
+        left: 25px;
+        bottom: 25px;
+        background-image: url("tshirt.jpg");
+        transform: rotate(45deg);
+      }
+
+      .img-section .img-3 {
+        right: 25px;
+        top: 25px;
+        background-image: url("kilt.jpg");
+        transform: rotate(-135deg);
+      }
+
+      .img-section .img-4 {
+        left: 25px;
+        top: 25px;
+        background-image: url("cap1.jpg");
+        transform: rotate(135deg);
+      }
+
+      .arc {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .color-border {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-left: 124px solid transparent;
+        border-right: 124px solid transparent;
+      }
+
+      .color-border.color-1 {
+        transform: translate(176px, 300px) rotate(180deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid blue;
+      }
+
+      .color-border.color-2 {
+        transform: translate(176px, 300px) rotate(225deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid red;
+      }
+
+      .color-border.color-3 {
+        transform: translate(176px, 300px) rotate(270deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid green;
+      }
+
+      .color-border.color-4 {
+        transform: translate(176px, 300px) rotate(315deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid white;
+      }
+
+      .color-border.color-5 {
+        transform: translate(176px, 300px) rotate(360deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid yellow;
+      }
+
+      .color-border.color-6 {
+        transform: translate(176px, 300px) rotate(45deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid orange;
+      }
+
+      .color-border.color-7 {
+        transform: translate(176px, 300px) rotate(90deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid brown;
+      }
+
+      .color-border.color-8 {
+        transform: translate(176px, 300px) rotate(135deg);
+        transform-origin: 50% 0;
+        border-bottom: 300px solid black;
+      }
+
+      .animation {
+        transition: transform 8s ease-in-out;
+      }
+
+      #speak {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+
+      #speak[data-disabled=true] {
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <img id="speak" src="./speaker-disabled.svg" data-disabled="true" />
+      <div class="circle-out">
+        <div class="circle-in" id="circleIn">
+          <div class="img-section">
+            <div class="img-1"></div>
+          </div>
+          <div class="img-section">
+            <div class="img-2"></div>
+          </div>
+          <div class="img-section">
+            <div class="img-3"></div>
+          </div>
+          <div class="img-section">
+            <div class="img-4"></div>
+          </div>
+        </div>
+        <div class="arc" id="arc">
+          <div class="color-border color-1"></div>
+          <div class="color-border color-2"></div>
+          <div class="color-border color-3"></div>
+          <div class="color-border color-4"></div>
+          <div class="color-border color-5"></div>
+          <div class="color-border color-6"></div>
+          <div class="color-border color-7"></div>
+          <div class="color-border color-8"></div>
+        </div>
+
+
+        <div class="point"></div>
+
+        <div class="arrow" id="arrow"></div>
+      </div>
+
+    </div>
+
+
+
+
+    <script src="jquery.js"></script>
+    <script>
+      (function ($) {
+        const clothes = ['t-shirt', 'cap', 'skirt', 'jacket'];
+        const colors = ['black', 'brown', 'orange', 'yellow', 'white', 'green', 'red', 'blue'];
+        let selectedClothes = clothes[0];
+        let selectedColor = colors[7];
+
+        var timmoutId = 0;
+
+        var clickHandler = function () {
+          clearTimeout(timmoutId);
+          var arc = $('#arc');
+          var img = $('#circleIn');
+          arc.removeClass('animation');
+          img.removeClass('animation');
+          $('#speak').attr({ src: './speaker-disabled.svg', 'data-disabled': true });
+          setDegree(arc, 0);
+          setDegree(img, -45);
+
+          var arcDeg = parseInt(Math.random() * 10 * 36) + 360 * 6;
+          var imgDeg = parseInt(Math.random() * 10 * 36) + 360 * 6;
+          selectedColor = colors[Math.floor((arcDeg % 360 - 22.5) < 0 ? 7 : (arcDeg % 360 - 22.5) / 45)]
+          selectedClothes = clothes[Math.floor((imgDeg % 360) / 90)];
+
+          setTimeout(() => {
+            arc.addClass('animation');
+            img.addClass('animation');
+            setDegree(arc, arcDeg);
+            setDegree(img, imgDeg * -1);
+            timmoutId = setTimeout(() => {
+              $('#speak').attr({ src: './speaker.svg', 'data-disabled': false });
+            }, 8000);
+          }, 0);
+        };
+        $('.point, .arrow').click(clickHandler);
+
+        function setDegree($obj, deg) {
+          $obj.css({
+            'transform': 'rotate(' + deg + 'deg)',
+            '-moz-transform': 'rotate(' + deg + 'deg)',
+            '-o-transform': 'rotate(' + deg + 'deg)'
+          });
+        }
+
+        $('#speak').click(function (e) {
+          if ($(e.target).attr('data-disabled') != 'true') {
+            let mp3 = new Audio('http://dict.youdao.com/dictvoice?audio=' + selectedColor + '+' + selectedClothes + '&type=1');
+            mp3.play();
+          }
+        });
+      }($))
+    </script>
+  </body>
+
+</html>
