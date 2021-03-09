@@ -1,6 +1,5 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -29,7 +28,8 @@ module.exports = {
           loader: 'css-loader',
           options: {
             modules: {
-              localIdentName: '[name]__[local]',
+              auto: true,
+              localIdentName: '[path][name]__[local]',
             },
           },
         }],
@@ -55,11 +55,6 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'plugins', to: 'plugins' },
-      ],
     }),
   ],
   externals: ['electron'],

@@ -1,3 +1,5 @@
+@value item-height: 48px;
+
 .navWrapper {
   width: 200px;
   flex: 0 0 auto;
@@ -16,13 +18,13 @@
 .link {
   position: relative;
   display: flex;
-  height: 48px;
+  height: item-height;
   align-items: stretch;
   color: rgba(0, 0, 0, 0.7);
 }
 
 .icon {
-  flex: 0 0 48px;
+  flex: 0 0 item-height;
   padding: 12px;
   background-clip: content-box;
   background-origin: content-box;
@@ -40,7 +42,7 @@
 
 .title {
   flex: 1 1 auto;
-  line-height: 48px;
+  line-height: item-height;
 }
 
 .link:hover,
