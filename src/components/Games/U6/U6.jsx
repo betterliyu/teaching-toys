@@ -1,6 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { SoundTwoTone } from '@ant-design/icons';
+import { SoundOutlined, SoundTwoTone } from '@ant-design/icons';
 import style from './U6.module.css';
+
+const clothes = ['t-shirt', 'cap', 'skirt', 'jacket'];
+const colors = ['black', 'brown', 'orange', 'yellow', 'white', 'green', 'red', 'blue'];
+let selectedClothes = clothes[0];
+let selectedColor = colors[7];
 
 export default function U6() {
   const arcRef = useRef(null);
@@ -8,38 +13,45 @@ export default function U6() {
   const [imgDeg, setImgDeg] = useState(-45);
   const [arcDeg, setArcDeg] = useState(0);
   const [animation, setAnimation] = useState('');
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  const clothes = ['t-shirt', 'cap', 'skirt', 'jacket'];
-  const colors = ['black', 'brown', 'orange', 'yellow', 'white', 'green', 'red', 'blue'];
-  let selectedClothes = clothes[0];
-  let selectedColor = colors[7];
+  let animationTimeout = 0;
 
   const clickHandler = () => {
+    clearTimeout(animationTimeout);
+    setIsPlaying(true);
     setAnimation('');
     setArcDeg(0);
     setImgDeg(-45);
 
     setTimeout(() => {
-      const arcdeg = parseInt(Math.random() * 10 * 36, 10) + 360 * 6;
-      const imgdeg = parseInt(Math.random() * 10 * 36, 10) + 360 * 6;
-      selectedColor = colors[Math.floor(((arcDeg % 360) - 22.5) < 0
-        ? 7 : ((arcDeg % 360) - 22.5) / 45)];
-      selectedClothes = clothes[Math.floor((imgDeg % 360) / 90)];
+      const newArcDeg = parseInt(Math.random() * 10 * 36, 10) + 360 * 6;
+      const newImgDeg = parseInt(Math.random() * 10 * 36, 10) + 360 * 6;
+      selectedColor = colors[Math.floor(((newArcDeg % 360) - 22.5) < 0
+        ? 7 : ((newArcDeg % 360) - 22.5) / 45)];
+      selectedClothes = clothes[Math.floor((newImgDeg % 360) / 90)];
 
       setAnimation(style.animation);
-      setArcDeg(arcdeg);
-      setImgDeg(imgdeg);
+      setArcDeg(newArcDeg);
+      setImgDeg(newImgDeg * -1);
+      animationTimeout = setTimeout(() => {
+        setIsPlaying(false);
+      }, 6000);
     }, 0);
   };
 
   const sound = () => {
-    const mp3 = new Audio(`http://dict.youdao.com/dictvoice?audio=${selectedColor}+${selectedClothes}&type=1`);
-    mp3.play();
+    if (!isPlaying) {
+      const mp3 = new Audio(`http://dict.youdao.com/dictvoice?audio=${selectedColor}+${selectedClothes}&type=1`);
+      mp3.play();
+    }
   };
 
   return (
     <div className={style.wrapper}>
-      <SoundTwoTone onClick={sound} />
+      { isPlaying
+        ? <SoundOutlined style={{ position: 'absolute', fontSize: 40, cursor: 'not-allowed' }} />
+        : <SoundTwoTone style={{ position: 'absolute', fontSize: 40 }} onClick={sound} />}
       <div className={style.circleOut}>
         <div
           className={`${style.circleIn} ${animation}`}
@@ -72,6 +84,7 @@ export default function U6() {
           <div className={`${style.colorBorder} ${style.color2}`} />
           <div className={`${style.colorBorder} ${style.color3}`} />
           <div className={`${style.colorBorder} ${style.color4}`} />
+          <div className={`${style.colorBorder} ${style.color5}`} />
           <div className={`${style.colorBorder} ${style.color6}`} />
           <div className={`${style.colorBorder} ${style.color7}`} />
           <div className={`${style.colorBorder} ${style.color8}`} />
