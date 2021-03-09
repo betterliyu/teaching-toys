@@ -1,0 +1,181 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.circleOut {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  top: 50%;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.circleIn {
+  z-index: 2;
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 0;
+  transform: rotate(-45deg);
+}
+
+.point {
+  position: absolute;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  margin: 0 280px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #b3d4fc;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 3;
+  /* margin: -120px 295px; */
+  left: 295px;
+  top: 60px;
+  width: 10px;
+  height: 240px;
+  transform-origin: 50% 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #b3d4fc;
+}
+
+.imgSection {
+  position: relative;
+  display: inline-block;
+  width: 249px;
+  height: 250px;
+}
+
+.imgSection div {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-size: 120px 120px;
+  background-repeat: no-repeat;
+}
+
+.imgSection:nth-child(1) {
+  border-right: 1px dashed #555;
+  border-bottom: 1px dashed #555;
+}
+
+.imgSection:nth-child(4) {
+  border-left: 1px dashed #555;
+  border-top: 1px dashed #555;
+}
+
+.imgSection .img1 {
+  right: 25px;
+  bottom: 25px;
+  background-image: url("./img/jack.jpg");
+  transform: rotate(-45deg);
+}
+
+.imgSection .img2 {
+  left: 25px;
+  bottom: 25px;
+  background-image: url("./img/tshirt.jpg");
+  transform: rotate(45deg);
+}
+
+.imgSection .img3 {
+  right: 25px;
+  top: 25px;
+  background-image: url("./img/skirt.jpg");
+  transform: rotate(-135deg);
+}
+
+.imgSection .img4 {
+  left: 25px;
+  top: 25px;
+  background-image: url("./img/cap.jpg");
+  transform: rotate(135deg);
+}
+
+.arc {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.colorBorder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 124px solid transparent;
+  border-right: 124px solid transparent;
+}
+
+.colorBorder.color1 {
+  transform: translate(176px, 300px) rotate(180deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid blue;
+}
+
+.colorBorder.color2 {
+  transform: translate(176px, 300px) rotate(225deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid red;
+}
+
+.colorBorder.color3 {
+  transform: translate(176px, 300px) rotate(270deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid green;
+}
+
+.colorBorder.color4 {
+  transform: translate(176px, 300px) rotate(315deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid white;
+}
+
+.colorBorder.color5 {
+  transform: translate(176px, 300px) rotate(360deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid yellow;
+}
+
+.colorBorder.color6 {
+  transform: translate(176px, 300px) rotate(45deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid orange;
+}
+
+.colorBorder.color7 {
+  transform: translate(176px, 300px) rotate(90deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid brown;
+}
+
+.colorBorder.color8 {
+  transform: translate(176px, 300px) rotate(135deg);
+  transform-origin: 50% 0;
+  border-bottom: 300px solid black;
+}
+
+.animation {
+  transition: transform 8s ease-in-out;
+}
