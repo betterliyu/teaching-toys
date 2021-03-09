@@ -25,7 +25,14 @@ module.exports = {
           options: {
             publicPath: '../',
           },
-        }, 'css-loader'],
+        }, {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              localIdentName: '[name]__[local]',
+            },
+          },
+        }],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -37,6 +44,10 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset',
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader'],
       },
     ],
   },
