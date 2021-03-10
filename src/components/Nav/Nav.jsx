@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Divider } from 'antd';
+import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 import Text from '../../constants/Text';
 import style from './Nav.module.css';
 
+const Size = {
+  Large: 'large',
+  Small: 'small',
+};
+
 export default function Nav() {
+  const [size, setSize] = useState(Size.Large);
+
   return (
-    <nav className={style.navWrapper}>
+    <nav className={`${style.navWrapper} ${size}`}>
       <ul className={style.nav}>
         <li key="U6">
           <NavLink
@@ -38,6 +47,12 @@ export default function Nav() {
           </NavLink>
         </li>
       </ul>
+      <Divider className={style.divider} />
+      {
+        size === Size.Large
+          ? <DoubleLeftOutlined className={style.toggle} onClick={() => setSize(Size.Small)} />
+          : <DoubleRightOutlined className={style.toggle} onClick={() => setSize(Size.Large)} />
+      }
     </nav>
   );
 }

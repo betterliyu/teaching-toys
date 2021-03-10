@@ -1,18 +1,30 @@
+@value item-width: 48px;
 @value item-height: 48px;
 
 .navWrapper {
   width: 200px;
   flex: 0 0 auto;
+  overflow: hidden;
+  transition: width 0.08s;
+  background-color: rgb(245, 245, 245);
 }
+
+.navWrapper:global(.large) {
+  width: 200px;
+}
+
+.navWrapper:global(.small) {
+  width: item-width;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 100%;
+  height: calc(100% - item-height);
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: rgb(245, 245, 245);
 }
 
 .link {
@@ -44,6 +56,9 @@
   flex: 1 1 auto;
   line-height: item-height;
 }
+:global(.small) .title {
+  display: none;
+}
 
 .link:hover,
 .link:focus,
@@ -65,4 +80,17 @@
   bottom: 0;
   width: 3px;
   background-color: rgb(112, 86, 151);
+}
+
+.divider {
+  margin: 0 8px;
+  width: auto;
+  min-width: auto;
+}
+
+.toggle {
+  float: right;
+  margin: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
 }

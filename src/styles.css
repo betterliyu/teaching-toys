@@ -10,8 +10,47 @@ button:focus,
   opacity: 1 !important;
 }
 
-iframe.plugin {
-  border: none;
-  width: 100%;
-  height: 100%;
+* {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  scrollbar-width: thin;
+}
+.scroll-auto-hide {
+  scrollbar-color: transparent transparent;
+}
+.scroll-auto-hide:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+::-webkit-scrollbar {
+  width: 18px;
+  height: 18px;
+}
+::-webkit-scrollbar-thumb {
+  border: 6px solid transparent;
+  background: rgba(0, 0, 0, 0.2);
+  background: var(--palette-black-alpha-20, rgba(0, 0, 0, 0.2));
+  border-radius: 10px;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb:vertical {
+  min-height: 30px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+  min-width: 30px;
+}
+.scroll-auto-hide::-webkit-scrollbar-thumb {
+  background: transparent;
+  background-clip: padding-box;
+}
+.scroll-auto-hide:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  background: var(--palette-black-alpha-20, rgba(0, 0, 0, 0.2));
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+  background: var(--palette-black-alpha-30, rgba(0, 0, 0, 0.3));
+  background-clip: padding-box;
 }
